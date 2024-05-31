@@ -5,6 +5,8 @@ import {searchCompanies} from './api'
 import Search from './Components/Search/Search'
 import CartList from './Components/CarsList/CartList'
 import ListPortfilio from './Components/Portfolio/ListPortifolio/ListPortfilio'
+import Navbar from './Components/Navbar/Navbar'
+import Hero from './Components/Hero/Hero'
 
 // const result = await searchCompanies('123')
 
@@ -52,7 +54,6 @@ function App() {
 
   const onSearchSubmit = async (e: SyntheticEvent) => {
     e.preventDefault()
-    console.log(123);
     const result = await searchCompanies(search)
     if (typeof result === 'string' ) {
       setServerError(result)
@@ -67,11 +68,16 @@ function App() {
 
   return (
     <>
+     <h1 className="text-3xl font-bold underline">
+      Hello world!
+    </h1>
+      <Navbar/>
+      <Hero/>
       {serverError && <h1>Error: {serverError}</h1>}
       <Search onSearchSubmit={onSearchSubmit} search={search} handleSearchChange={handleSearchChange}/>
       {/* <Card /> */}
       <ListPortfilio portfolioValues = {portfolioValues} onPortfolioDelete={onPortfolioDelete} />
-      <CartList searchResults={searchResult} onPortfolioCreate={onPortfolioCreate} onPortfolioDelete={onPortfolioDelete} ></CartList>
+      <CartList searchResults={searchResult} onPortfolioCreate={onPortfolioCreate} ></CartList>
       {/* CardList */}
 
     </>
