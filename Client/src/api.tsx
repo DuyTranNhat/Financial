@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { CompanySearch } from './Company.d'
+import { CompanySearch, CompanyProfile } from './Company.d'
 
 interface SearchResponse {
     data: CompanySearch[];
@@ -24,4 +24,18 @@ export const searchCompanies = async (query: string) => {
           return "An expected error has occured.";
         }
       }
+}
+
+export const getCompanyProfile = async (keyCompany: string) => {
+  try {
+    const data = await axios.get<CompanyProfile[]>(
+      // https://financialmodelingprep.com/api/v3/profile/DUUO?apikey=SmqQpMjGg28k3jlMsIAkwlQule0EiG1z`
+      // https://financialmodelingprep.com/api/v3/profile/${keyCompany}?apikey=SmqQpMjGg28k3jlMsIAkwlQule0EiG1z
+    
+      `https://financialmodelingprep.com/api/v3/profile/${keyCompany}?apikey=SmqQpMjGg28k3jlMsIAkwlQule0EiG1z`
+    );
+    return data;
+  } catch (error: any) {
+    console.log("error message: ", error.message);
+  }
 }
