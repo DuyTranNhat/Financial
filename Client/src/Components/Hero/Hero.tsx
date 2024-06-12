@@ -1,8 +1,7 @@
 import hero from "./hero.png";
+import { Link } from "react-router-dom";
 
-interface Props {}
-
-const Hero = (props: Props) => {
+const Hero = () => {
   return (
     <section id="hero">
       <div className="container flex flex-col-reverse mx-auto p-8 lg:flex-row">
@@ -15,12 +14,12 @@ const Hero = (props: Props) => {
             news.
           </p>
           <div className="mx-auto lg:mx-0">
-            <a
-              href=""
+            <Link
+              to="/search"
               className="py-5 px-10 text-2xl font-bold text-white bg-lightGreen rounded lg:py-4 hover:opacity-70"
             >
-              Get Started
-            </a>
+              Get Started</Link>
+
           </div>
         </div>
         <div className="mb-24 mx-auto md:w-180 md:px-10 lg:mb-0 lg:w-1/2">
