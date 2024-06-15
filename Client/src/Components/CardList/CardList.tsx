@@ -9,12 +9,14 @@ interface Props {
 }
 
 const CartList: React.FC<Props> = ({ searchResults, onPortfolioCreate }: Props): JSX.Element => {
+  console.log(searchResults);
   return (
+    
     <div>
       {
         searchResults.length > 0 ? (
           searchResults.map((companySearch, index) => {
-            if (index > 0 && index < 100)
+            if (index >= 0 && index < 100)
               return <Card id={companySearch.symbol} key={index} searchResult={companySearch}
                 onPortfolioCreate={onPortfolioCreate} />
           })

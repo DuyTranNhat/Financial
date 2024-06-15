@@ -21,17 +21,14 @@ export const searchCompanies = async (query: string) => {
           return error.message;
         } else {
           console.log("unexpected error: ", error);
-          return "An expected error has occured.";
+          return "An expected error has occured.";  
         }
-      }
+      } 
 }
 
 export const getCompanyProfile = async (keyCompany: string) => {
   try {
     const data = await axios.get<CompanyProfile[]>(
-      // https://financialmodelingprep.com/api/v3/profile/DUUO?apikey=SmqQpMjGg28k3jlMsIAkwlQule0EiG1z`
-      // https://financialmodelingprep.com/api/v3/profile/${keyCompany}?apikey=SmqQpMjGg28k3jlMsIAkwlQule0EiG1z
-    
       `https://financialmodelingprep.com/api/v3/profile/${keyCompany}?apikey=SmqQpMjGg28k3jlMsIAkwlQule0EiG1z`
     );
     return data;
