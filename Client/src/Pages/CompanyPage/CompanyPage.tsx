@@ -7,13 +7,13 @@ import CompanyDashboard from "../../Components/CompanyDashboard/CompanyDashboard
 import Tile from "../../Components/Title/Title";
 
 const CompanyPage = () => {
-  let { name } = useParams();
+  let { ticker } = useParams();
 
   const [company, setCompany] = useState<CompanyProfile>();
 
   useEffect(() => {
     const getProfileInit = async () => {
-      const result = await getCompanyProfile(name!);
+      const result = await getCompanyProfile(ticker!);
       console.log(result);
 
       setCompany(result?.data[0]);
@@ -26,7 +26,7 @@ const CompanyPage = () => {
       {company ? (
         <div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
           <Sidebar />
-          <CompanyDashboard>
+          <CompanyDashboard ticker={ticker!} >
             <Tile title={company.companyName} subTitle={company.city} />
           </CompanyDashboard>
         </div>
