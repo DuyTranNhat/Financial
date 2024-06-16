@@ -5,7 +5,7 @@ type Props = {
   subTitle: string;
 };
 
-const Tile = ({ title, subTitle }: Props) => {
+const Title = ({ title, subTitle }: Props) => {
   return (
     <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
       <div className="relative flex flex-col min-w-0 break-words bg-white rounded-lg mb-6 xl:mb-0 shadow-lg">
@@ -25,4 +25,4 @@ const Tile = ({ title, subTitle }: Props) => {
   );
 };
 
-export default Tile;
+export default Title;

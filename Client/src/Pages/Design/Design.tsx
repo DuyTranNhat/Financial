@@ -6,6 +6,7 @@ type Props = {};
 
 const data = TestDataCompany;
 
+
 const tableConfig = [
   {
     label: "symbol",
@@ -22,7 +23,7 @@ const DesignGuide = (props: Props) => {
       </h1>
       
       <RatioList config={tableConfig} data={data} />
-      <Table />
+      <Table config={tableConfig} data={data} />
       <h3>
         Table - Table takes in a configuration object and company data as
         params. Use the config to style your table.

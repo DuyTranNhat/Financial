@@ -1,7 +1,8 @@
 import axios from 'axios'
 import {
   CompanyKeyMetrics,
-  CompanyKeyRatios, CompanySearch, CompanyProfile
+  CompanySearch, CompanyProfile,
+  CompanyIncomeStatement
 } from './Company.d'
 
 interface SearchResponse {
@@ -50,3 +51,15 @@ export const getKeyMetrics = async (symbolQuery: string) => {
     console.log("error message: ", error.message);
   }
 };
+
+export const getIncomeStament = async (symbolQuery: string) => {
+  try {
+    const data = await axios.get<CompanyIncomeStatement[]>(
+      `https://financialmodelingprep.com/api/v3/income-statement/${symbolQuery}?period=annual&apikey=SmqQpMjGg28k3jlMsIAkwlQule0EiG1z`
+    )
+    return data;
+  } catch (error: any) {
+    console.log("Error: ", error.message);
+
+  }
+}
