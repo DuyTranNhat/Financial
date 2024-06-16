@@ -6,10 +6,6 @@ type Props = {
     data: any;
 };
 
-const data = TestDataCompany[0];
-
-type Company = typeof data;
-
 const RatioList = ({ config, data }: Props) => {
     const renderedCells = config.map((row: any) => {
       return (

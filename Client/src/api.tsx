@@ -2,7 +2,8 @@ import axios from 'axios'
 import {
   CompanyKeyMetrics,
   CompanySearch, CompanyProfile,
-  CompanyIncomeStatement
+  CompanyIncomeStatement,
+  CompanyBalanceSheet,
 } from './Company.d'
 
 interface SearchResponse {
@@ -63,3 +64,15 @@ export const getIncomeStament = async (symbolQuery: string) => {
 
   }
 }
+
+
+export const getBalanceSheet = async (query: string) => {
+  try {
+    const data = await axios.get<CompanyBalanceSheet[]>(
+      `https://financialmodelingprep.com/api/v3/balance-sheet-statement/${query}?limit=20&apikey=SmqQpMjGg28k3jlMsIAkwlQule0EiG1z`
+    );
+    return data;
+  } catch (error: any) {
+    console.log("error message: ", error.message);
+  }
+};

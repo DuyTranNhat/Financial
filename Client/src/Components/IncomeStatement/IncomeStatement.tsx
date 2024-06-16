@@ -7,34 +7,36 @@ import Table from "../Table/Table";
 interface Props {
 
 };
-
-const config = [
+const configs = [
   {
     label: "Date",
-    render: (company: CompanyIncomeStatement) => company.date
+    render: (company: CompanyIncomeStatement) => company.date,
   },
   {
     label: "Total Revenue",
-    render: (company: CompanyIncomeStatement) => company.revenue
+    render: (company: CompanyIncomeStatement) => company.revenue,
   },
   {
-    label: "Net Income",
-    render: (company: CompanyIncomeStatement) => company.netIncome
-  },
-  {
-    label: "Date",
-    render: (company: CompanyIncomeStatement) => company.date
+    label: "Cost Of Revenue",
+    render: (company: CompanyIncomeStatement) => company.costOfRevenue,
   },
   {
     label: "Operating Expenses",
     render: (company: CompanyIncomeStatement) => company.operatingExpenses,
   },
   {
-    label: "Cost of Revenue",
-    render: (company: CompanyIncomeStatement) => company.netIncome,
+    label: "Gross Profit",
+    render: (company: CompanyIncomeStatement) => company.grossProfit,
   },
-]
-
+  {
+    label: "Income Before Tax",
+    render: (company: CompanyIncomeStatement) => company.incomeBeforeTax,
+  },
+  {
+    label: "Operating Income",
+    render: (company: CompanyIncomeStatement) => company.operatingIncome,
+  },
+];
 
 
 const IncomeStatement = (props: Props) => {
@@ -50,7 +52,7 @@ const IncomeStatement = (props: Props) => {
   }, [])
 
   return (
-      <>{companyIncome ? (<Table config={config} data={companyIncome} />) : <h1>Data Not Found</h1>}</>
+      <>{companyIncome ? (<Table config={configs} data={companyIncome} />) : <h1>Data Not Found</h1>}</>
   );
 };
 

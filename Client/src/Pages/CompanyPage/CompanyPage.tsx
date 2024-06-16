@@ -4,7 +4,7 @@ import { CompanyProfile } from "../../Company.d";
 import { useParams } from "react-router-dom";
 import Sidebar from "../../Components/Sildebar/Sildebar";
 import CompanyDashboard from "../../Components/CompanyDashboard/CompanyDashboard";
-import Title from "../../Components/Title/Title";
+import Tile from "../../Components/Tile/Tile";
 
 const CompanyPage = () => {
   let { ticker } = useParams();
@@ -27,7 +27,10 @@ const CompanyPage = () => {
         <div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
           <Sidebar />
           <CompanyDashboard ticker={ticker!} >
-            <Title title={company.companyName} subTitle={company.city} />
+            <Tile title="Company Name" subTitle={company.companyName} />
+            <Tile title="Price" subTitle={company.price.toString()} />
+            <Tile title="Sector" subTitle={company.sector} />
+            <Tile title="Market Cap" subTitle={company.mktCap.toString()} />
           </CompanyDashboard>
         </div>
       ) : (
