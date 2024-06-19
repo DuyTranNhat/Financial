@@ -1,14 +1,7 @@
-import React from "react";
-
-
 type Props = {
     config: any;
     data: any;
 };
-
-
-
-
 
 const Table = ({ config, data }: Props) => {
     const renderedRows = data.map((company : any) => {

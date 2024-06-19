@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { CompanyKeyMetrics } from "../../Company.d";
 import { getKeyMetrics } from "../../api";
 import RatioList from "../RatioList/RatioList";
-
-interface Props {
-}
-
 
 const tableConfig = [
   {
@@ -34,7 +30,7 @@ const tableConfig = [
   },
 ];
 
-const CompanyProfile = (props: Props) => {
+const CompanyProfile = () => {
   const ticker = useOutletContext<string>();
   const [companyData, setCompanyData] = useState<CompanyKeyMetrics>();
   useEffect(() => {

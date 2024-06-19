@@ -4,6 +4,7 @@ import {
   CompanySearch, CompanyProfile,
   CompanyIncomeStatement,
   CompanyBalanceSheet,
+  CompanyCashFlow,
 } from './Company.d'
 
 interface SearchResponse {
@@ -76,3 +77,14 @@ export const getBalanceSheet = async (query: string) => {
     console.log("error message: ", error.message);
   }
 };
+
+export const getCashFlow = async (query: string) => {
+  try {
+    const data = await axios.get<CompanyCashFlow[]>(
+      `https://financialmodelingprep.com/api/v3/cash-flow-statement/${query}?limit=100&apikey=SmqQpMjGg28k3jlMsIAkwlQule0EiG1z`
+    );
+    return data;
+  } catch (error: any) {
+    console.log("error: " + error.message);
+  }
+}
