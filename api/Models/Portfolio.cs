@@ -11,7 +11,7 @@ namespace api.Models
     {
         public string AppUserId { get; set; }
         public AppUser AppUser { get; set;}
-        public int CommentId { get; set;}
-        public Comment Comment { get; set;}
+        public int StockId { get; set;}
+        public Stock Stock { get; set;}
     }
 }

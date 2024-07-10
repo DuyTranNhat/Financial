@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace api.Migrations
 {
     /// <inheritdoc />
-    public partial class Relationship_AppUser_Comment : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -202,11 +202,11 @@ namespace api.Migrations
                 columns: table => new
                 {
                     AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    CommentId = table.Column<int>(type: "int", nullable: false)
+                    StockId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Portfolios", x => new { x.CommentId, x.AppUserId });
+                    table.PrimaryKey("PK_Portfolios", x => new { x.StockId, x.AppUserId });
                     table.ForeignKey(
                         name: "FK_Portfolios_AspNetUsers_AppUserId",
                         column: x => x.AppUserId,
@@ -214,9 +214,9 @@ namespace api.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Portfolios_Comments_CommentId",
-                        column: x => x.CommentId,
-                        principalTable: "Comments",
+                        name: "FK_Portfolios_Stocks_StockId",
+                        column: x => x.StockId,
+                        principalTable: "Stocks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -226,8 +226,8 @@ namespace api.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "198c8208-0751-49c1-9e7b-04e069c98464", null, "User", "USER" },
-                    { "a2dd65e0-2075-4d3a-88ec-8a84d8200385", null, "Admin", "ADMIN" }
+                    { "21cac6a3-c44d-4eda-8749-aaea939f1b00", null, "User", "USER" },
+                    { "46cf811d-cb84-4e09-b1dc-f251af5d228d", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -299,6 +299,9 @@ namespace api.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Comments");
+
+            migrationBuilder.DropTable(
                 name: "Portfolios");
 
             migrationBuilder.DropTable(
@@ -306,9 +309,6 @@ namespace api.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Comments");
 
             migrationBuilder.DropTable(
                 name: "Stocks");

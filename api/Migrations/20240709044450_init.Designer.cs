@@ -12,8 +12,8 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20240709035005_Relationship_AppUser_Comment")]
-    partial class Relationship_AppUser_Comment
+    [Migration("20240709044450_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,13 +54,13 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a2dd65e0-2075-4d3a-88ec-8a84d8200385",
+                            Id = "46cf811d-cb84-4e09-b1dc-f251af5d228d",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "198c8208-0751-49c1-9e7b-04e069c98464",
+                            Id = "21cac6a3-c44d-4eda-8749-aaea939f1b00",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -268,13 +268,13 @@ namespace api.Migrations
 
             modelBuilder.Entity("api.Models.Portfolio", b =>
                 {
-                    b.Property<int>("CommentId")
+                    b.Property<int>("StockId")
                         .HasColumnType("int");
 
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("CommentId", "AppUserId");
+                    b.HasKey("StockId", "AppUserId");
 
                     b.HasIndex("AppUserId");
 
@@ -383,15 +383,15 @@ namespace api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("api.Models.Comment", "Comment")
+                    b.HasOne("api.Models.Stock", "Stock")
                         .WithMany("Portfolios")
-                        .HasForeignKey("CommentId")
+                        .HasForeignKey("StockId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("AppUser");
 
-                    b.Navigation("Comment");
+                    b.Navigation("Stock");
                 });
 
             modelBuilder.Entity("api.Models.AppUser", b =>
@@ -399,14 +399,11 @@ namespace api.Migrations
                     b.Navigation("Portfolios");
                 });
 
-            modelBuilder.Entity("api.Models.Comment", b =>
-                {
-                    b.Navigation("Portfolios");
-                });
-
             modelBuilder.Entity("api.Models.Stock", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("Portfolios");
                 });
 #pragma warning restore 612, 618
         }

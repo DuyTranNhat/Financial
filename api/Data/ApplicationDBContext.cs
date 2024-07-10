@@ -24,11 +24,11 @@ namespace api.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Portfolio>(p => p.HasKey(item => new { item.CommentId, item.AppUserId }));
+            modelBuilder.Entity<Portfolio>(p => p.HasKey(item => new { item.StockId, item.AppUserId }));
 
             modelBuilder.Entity<Portfolio>().HasOne(p => p.AppUser).WithMany(p => p.Portfolios).HasForeignKey(p => p.AppUserId);
 
-            modelBuilder.Entity<Portfolio>().HasOne(p => p.Comment).WithMany(c => c.Portfolios).HasForeignKey(p => p.CommentId);
+            modelBuilder.Entity<Portfolio>().HasOne(p => p.Stock).WithMany(c => c.Portfolios).HasForeignKey(p => p.StockId);
 
             List<IdentityRole> roles = new List<IdentityRole>() {
                 new IdentityRole() {
