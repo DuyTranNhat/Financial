@@ -62,5 +62,22 @@ namespace api.Controllers
                 return Created();
             }
         }
+
+        [HttpDelete]
+        [Authorize]
+        public async Task<IActionResult> DeleteAsync(string symbol) {
+            var userName = User.GetUsername();
+            var appuser = await _userManager.FindByNameAsync(userName);
+            var userPortfolio = await _portifolioRepository.GetUserPortfolio(appuser);
+            
+            var portfolioExisting = userPortfolio.FirstOrDefault(s => s.Symbol.ToLower() == symbol.ToLower());
+
+            if (portfolioExisting != null) {
+                await _portifolioRepository.DeleteAsync(appuser, symbol);
+                return NoContent();
+            } else {
+                return BadRequest("Stock not in your portfolio");
+            }
+        }
     }
 }
