@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.Dtos;
+using api.Heppers;
 using api.Interfaces;
 using api.Mappers;
 using api.Models;
@@ -39,9 +40,20 @@ namespace api.Repository
             return commentExisted;
         }
 
-        public async Task<List<Comment>> GetAllAsync()
+        public async Task<List<Comment>> GetAllAsync(CommentQueryObject commentQueryObject)
         {
-            return await _context.Comments.Include(c => c.AppUser).ToListAsync();
+            var comment =  _context.Comments.Include(c => c.AppUser).AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(commentQueryObject.Symbol)) {
+                comment = comment.Where(c => c.Stock.Symbol == commentQueryObject.Symbol);
+            }
+            
+            if (commentQueryObject.IsDecsending) {
+                comment = comment.OrderByDescending(c => c.CreatedOn);
+            }
+
+            return await comment.ToListAsync();
+
         }
 
         public async Task<Comment?> GetByIdAsync(int id)

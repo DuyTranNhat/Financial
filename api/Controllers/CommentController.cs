@@ -7,10 +7,12 @@ using api.Data;
 using api.Dtos;
 using api.Dtos.Comment;
 using api.Extension;
+using api.Heppers;
 using api.Interfaces;
 using api.Mappers;
 using api.Models;
 using api.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -38,19 +40,16 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        [Authorize]
+        public async Task<IActionResult> GetAll([FromQuery] CommentQueryObject commentQueryObject)
         {
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-
-            var UserName = User.GetUsername();
-            var appUser = _userManager.FindByNameAsync(UserName);
-
-            var commentList = await _commentRepo.GetAllAsync();
+            var commentList = await _commentRepo.GetAllAsync(commentQueryObject);
             var commentListDto = commentList.Select(item => item.ToCommentDto());
-            return Ok(commentListDto);
+            return Ok(commentList);
         }
 
         [HttpGet("{id}")]
