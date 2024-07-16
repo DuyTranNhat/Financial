@@ -3,6 +3,9 @@ import Navbar from './Components/Navbar/Navbar'
 
 import { Outlet } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
+
+import { UserProvider } from './Context/useAuth'
+
 import "./App.css";
 
 // const result = await searchCompanies('123')
@@ -16,11 +19,11 @@ import "./App.css";
 function App() {
 
   return (
-    <>
+    <UserProvider>
       <Navbar />
       <Outlet />
       <ToastContainer />
-    </>
+    </UserProvider>
   )
 }
 
