@@ -2,6 +2,7 @@ import './App.css'
 import Navbar from './Components/Navbar/Navbar'
 
 import { Outlet } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify';
 import "./App.css";
 
 // const result = await searchCompanies('123')
@@ -18,6 +19,7 @@ function App() {
     <>
       <Navbar />
       <Outlet />
+      <ToastContainer />
     </>
   )
 }
