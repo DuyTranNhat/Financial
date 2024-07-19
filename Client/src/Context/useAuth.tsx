@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { loginAPI, registerAPI } from "../Services/AuthService";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type UserContextType = {
     user: UserProfile | null;
@@ -51,7 +52,7 @@ export const UserProvider = ({ children }: Props) => {
                     localStorage.setItem("user", JSON.stringify(UserObj));
                     setToken(res?.data.token);
                     setUser(UserObj!);
-                    toast.success("Register success");
+                    toast.success("Register success!");
                     navigate("/search");
                 }
             }).catch(e => toast.warning("server error occured"));
@@ -70,9 +71,8 @@ export const UserProvider = ({ children }: Props) => {
                     localStorage.setItem("user", JSON.stringify(UserObject));
                     setUser(UserObject);
                     setToken(res.data.token);
-
+                    toast.success("Success Notification !");
                     navigate("/search")
-                    toast.success("Login success")
                 }
             }).catch(ex => toast.warning("Server error occured"))
     }
