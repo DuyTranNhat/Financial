@@ -16,7 +16,7 @@ using Microsoft.Extensions.Logging;
 
 namespace api.Controllers
 {
-    [Route("api/stock")]
+    [Route("api/stock")] 
     [ApiController]
     public class StockController : ControllerBase
     {
@@ -32,7 +32,7 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize()]
         public async Task<IActionResult> getAll([FromQuery] QueryObject queryObj)
         {
             if (!ModelState.IsValid)

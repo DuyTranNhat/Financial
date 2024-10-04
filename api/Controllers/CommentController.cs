@@ -49,7 +49,7 @@ namespace api.Controllers
 
             var commentList = await _commentRepo.GetAllAsync(commentQueryObject);
             var commentListDto = commentList.Select(item => item.ToCommentDto());
-            return Ok(commentList);
+            return Ok(commentListDto);
         }
 
         [HttpGet("{id}")]
@@ -90,9 +90,9 @@ namespace api.Controllers
             var appUser = await _userManager.FindByNameAsync(userName);
 
             var commentModel = commentCreate.ToCommentFromCreate(stockExiting.Id);
+            
             commentModel.AppUserId = appUser.Id;
             Comment? commentCreated = await _commentRepo.CreateAsync(commentModel);
-            await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetById), new { id = commentCreated.Id }, commentModel.ToCommentDto());
         }
 

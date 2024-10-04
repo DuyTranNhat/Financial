@@ -6,7 +6,6 @@ type Props = {
 const Table = ({ config, data }: Props) => {
     const renderedRows = data.map((company : any) => {
         return (
-
             <tr key={company.cik}>
                 {/* <td className="p-4 text-left whitespace-nowrap text-sm font-normal text-gray-900">
                     {configs[0].render(company)}

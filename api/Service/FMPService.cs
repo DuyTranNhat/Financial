@@ -19,24 +19,26 @@ namespace api.Service
             _httpClient = httpClient;
             _config = config;
         }
-        
+
         public async Task<Stock?> FindStockBySymbolAsync(string symbol)
         {
             try
             {
-                var result = await _httpClient.GetAsync($"https://financialmodelingprep.com/api/v3/profile/{symbol}?apikey={_config["FPMKey"]}");
-
-                var content = await result.Content.ReadAsStringAsync();
-                var task = JsonConvert.DeserializeObject<FMPStock[]>(content);
-
-                FMPStock stock = task[0];
-
-                if (stock != null)
+                var result = await _httpClient.GetAsync($"https://financialmodelingprep.com/api/v3/profile/{symbol}?apikey=SmqQpMjGg28k3jlMsIAkwlQule0EiG1z");
+                if (result.IsSuccessStatusCode)
                 {
-                    return stock.ToStockFromFMP();
+                    var content = await result.Content.ReadAsStringAsync();
+                    var tasks = JsonConvert.DeserializeObject<FMPStock[]>(content);
+                    var stock = tasks[0];
+                    if (stock != null)
+                    {
+                        return stock.ToStockFromFMP();
+                    }
+                    return null;
                 }
                 return null;
             }
+            
             catch (Exception ex)
             {
                 Console.WriteLine(ex);

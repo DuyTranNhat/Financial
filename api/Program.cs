@@ -69,7 +69,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 
 builder.Services.AddAuthentication(options =>
 {
-    options.DefaultAuthenticateScheme =
+    options.DefaultAuthenticateScheme = 
     options.DefaultChallengeScheme =
     options.DefaultForbidScheme =
     options.DefaultScheme =
@@ -111,11 +111,13 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors(x => x
+    .WithOrigins("http://localhost:5173")
     .AllowAnyMethod()
     .AllowAnyHeader()
     .AllowCredentials()
     .SetIsOriginAllowed(origin => true));
 
+app.UseCors("AllowReactLocalhost");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

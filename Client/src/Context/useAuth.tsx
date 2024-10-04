@@ -1,5 +1,5 @@
 import React, { Children, useContext, useEffect, useState } from "react";
-import { UserProfile } from "../Model/User"
+import { UserProfile } from "../Models/User"
 import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -14,6 +14,7 @@ type UserContextType = {
     login: (username: string, password: string) => void;
     logout: () => void;
     isLoggedIn: () => boolean;
+    isReady: boolean
 };
 
 type Props = { children: React.ReactNode }
@@ -36,8 +37,8 @@ export const UserProvider = ({ children }: Props) => {
             setToken(token);
             axios.defaults.headers.common["Authorization"] = "Bearer " + token;
         }
-        setIsReady(true);
-    }, []);
+        setIsReady(true);   
+    }, [token]);
 
     const registerUser = async (email: string, username: string, password: string) => {
         await registerAPI(username, password, email)
@@ -68,9 +69,13 @@ export const UserProvider = ({ children }: Props) => {
                         email: res?.data.email,
                     }
 
+
                     localStorage.setItem("user", JSON.stringify(UserObject));
                     setUser(UserObject);
-                    setToken(res.data.token);
+                    setToken(res?.data.token);
+
+
+                    
                     toast.success("Success Notification !");
                     navigate("/search")
                 }
@@ -86,11 +91,13 @@ export const UserProvider = ({ children }: Props) => {
         localStorage.removeItem("token")
         setUser(null)
         setToken(null)
+        setIsReady(false)
         navigate("/")
     }
 
     return (
-        <UserContext.Provider value={{ user, token, registerUser, login, logout, isLoggedIn }} >
+        
+        <UserContext.Provider value={{ user, token, registerUser, login, logout, isLoggedIn, isReady }} >
             {isReady ? children : null}
         </UserContext.Provider>
     )

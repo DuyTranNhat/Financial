@@ -1,0 +1,12 @@
+# Node modules
+node_modules/
+
+# Visual Studio Code settings
+.vscode/
+
+# Visual Studio files
+.vs/
+
+# Ignore package.json and package-lock.json
+package.json
+package-lock.json

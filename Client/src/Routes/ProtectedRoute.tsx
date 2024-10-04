@@ -8,12 +8,13 @@ type Props = {
 
 const ProtectedRoute = ({ children }: Props) => {
     const location = useLocation();
-    console.log(location);
 
-    const { isLoggedIn } = useAuth()
+    const { isLoggedIn, isReady } = useAuth()
+    
 
-    return isLoggedIn() ? (
+    return (isLoggedIn() && isReady) ? (
         <>{children}</>
+        
     ) : <Navigate to="/login" state={{ from : location }} replace ></Navigate>
 }
 

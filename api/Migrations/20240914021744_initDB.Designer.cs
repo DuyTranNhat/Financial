@@ -12,8 +12,8 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20240711052028_Relation_comment_user")]
-    partial class Relation_comment_user
+    [Migration("20240914021744_initDB")]
+    partial class initDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,13 +54,13 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "90cc3989-140a-4e2e-a7bc-1dfb867b297c",
+                            Id = "0f407f37-9d0b-4b25-b4fc-427ea24e82cb",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "d3ee2c71-d822-4b4f-8391-a7981ab7171d",
+                            Id = "1ab4561c-c8d3-4d4d-9288-db348999b1b9",
                             Name = "User",
                             NormalizedName = "USER"
                         });

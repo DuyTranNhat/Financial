@@ -25,6 +25,7 @@ namespace api.Repository
         {
             await _context.Comments.AddAsync(comment);
             await _context.SaveChangesAsync();
+            
             return comment;
         }
 
@@ -53,7 +54,6 @@ namespace api.Repository
             }
 
             return await comment.ToListAsync();
-
         }
 
         public async Task<Comment?> GetByIdAsync(int id)

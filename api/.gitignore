@@ -1,0 +1,41 @@
+# Visual Studio
+.vs/
+*.sln
+*.user
+*.suo
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Ll]og/
+[Ll]ogs/
+bin/
+obj/
+
+# Visual Studio Code
+.vscode/
+
+# User-specific files
+*.rsuser
+*.userprefs
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/build/*
+!**/packages/build/**/build.props
+!**/packages/build/**/build.targets
+
+# App settings
+appsettings*.json
+
+# Node.js dependencies
+node_modules/
+
+# Other
+*.db
+*.db-journal

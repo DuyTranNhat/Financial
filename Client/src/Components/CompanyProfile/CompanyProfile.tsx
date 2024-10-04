@@ -4,6 +4,8 @@ import { CompanyKeyMetrics } from "../../Company.d";
 import { getKeyMetrics } from "../../api";
 import RatioList from "../RatioList/RatioList";
 import Spinner from "../Spinner/Spinner";
+import StockComment from "../StockComment/StockComment";
+import { useAuth } from "../../Context/useAuth";
 
 const tableConfig = [
   {
@@ -46,6 +48,8 @@ const CompanyProfile = () => {
       {companyData ? (
         <>
           <RatioList config={tableConfig} data={companyData} />
+          
+          <StockComment  stockSymbol={ticker} />
         </>
       ) : (
         <Spinner />
